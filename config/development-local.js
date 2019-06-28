@@ -3,7 +3,7 @@ module.exports = {
     httpsEnabled: false,
   },
   mongo: {
-    uri: 'mongodb://localhost/survey',
+    uri: 'mongodb://mongodb:27017/survey',
     debug: true,
   },
   jwt: {
