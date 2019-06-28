@@ -19,6 +19,11 @@ module.exports = {
       useNewUrlParser: true,
       mongos,
     },
+    options: {
+      poolSize: 5,
+      keepAlive: 300000,
+      connectTimeoutMS: 30000,
+    },
   },
   jwt: {
     debugEnabled: false,

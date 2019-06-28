@@ -9,7 +9,7 @@ const answerSchema = require('./answer.schema');
 mongoose.Promise = global.Promise;
 
 
-const connectionOptions = config.get('mongo.connectionOptions');
+const connectionOptions = config.get('mongo.options');
 
 mongoose.connection.on('error', (err) => {
   if (err) {
