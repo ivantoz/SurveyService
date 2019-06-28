@@ -2,7 +2,7 @@ version: 2.1
 executors:
   docker-publisher:
     environment:
-      IMAGE_NAME: jonathancardoso/building-on-ci
+      IMAGE_NAME: ivantoz/survey
     docker:
       - image: circleci/buildpack-deps:stretch
 jobs:
@@ -57,11 +57,21 @@ jobs:
             docker push $IMAGE_NAME:latest
             docker push $IMAGE_NAME:$IMAGE_TAG
 
-  - run:
-      name: Run tests
-      command: |
-        docker-compose up -d
-        docker-compose run dockerapp python test.py
+  run-test:
+      executor: docker-publisher
+      steps:
+        - run:
+            name: Run tests
+            command: |
+              docker-compose up -d
+              docker-compose run dockerapp npm run test
+  run-app:
+        executor: docker-publisher
+        steps:
+          - run:
+              name: Run tests
+              command: |
+                docker-compose up -d
 workflows:
   version: 2
   build-master:
@@ -73,6 +83,18 @@ workflows:
       - publish-latest:
           requires:
             - build
+          filters:
+            branches:
+              only: master
+      - run-test:
+          requires:
+            - publish-latest
+          filters:
+            branches:
+              only: master
+      - run-app:
+          requires:
+            - run-test
           filters:
             branches:
               only: master
