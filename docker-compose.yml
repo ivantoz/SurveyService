@@ -13,7 +13,9 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - app-network
+      app-network:
+        aliases:
+          - db
     command: mongod --smallfiles --logpath=/dev/null # --quiet
   app:
     container_name: app
@@ -31,7 +33,9 @@ services:
       - .:/home/node/app
       - node_modules:/home/node/app/node_modules
     networks:
-      - app-network
+      app-network:
+        aliases:
+          - app
     command: ./wait-for.sh db:27017 -- /home/node/app/node_modules/.bin/. local/dev-env.sh && node lib/index.js
     links:
       - db
