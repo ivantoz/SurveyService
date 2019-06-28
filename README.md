@@ -1,6 +1,6 @@
-# KOA API
+# Survey API
 
-service for handling authentication and CRUD operation for fellows
+service for handling authentication and CRUD operation for surveys and answers
 
 
 ## installation
@@ -37,4 +37,4 @@ npm run lint
 ## license
 unlicensed
 
-all code © 2018 Ivan
+all code © 2019 Ivan
