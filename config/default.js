@@ -20,6 +20,7 @@ module.exports = {
       mongos,
     },
     options: {
+      useCreateIndex: true,
       useNewUrlParser: true,
       poolSize: 5,
       keepAlive: 300000,
