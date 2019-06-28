@@ -20,6 +20,7 @@ module.exports = {
       mongos,
     },
     options: {
+      useNewUrlParser: true,
       poolSize: 5,
       keepAlive: 300000,
       connectTimeoutMS: 30000,
