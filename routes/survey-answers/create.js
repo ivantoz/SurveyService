@@ -16,7 +16,7 @@ module.exports = {
     const { Answer } = ctx.models;
     const newAnswerTosave = ctx.request.body;
 
-    const answer = await Answer.findOne({ createdBy: _id, survey_id: newAnswerTosave.survey_id  })
+    const answer = await Answer.findOne({ createdBy: _id, survey_id: newAnswerTosave.survey_id })
       .exec();
 
     if (answer) {

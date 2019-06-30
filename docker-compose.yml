@@ -12,10 +12,6 @@ services:
       - dbdata:/data/db
     ports:
       - "27017:27017"
-    networks:
-      app-network:
-        aliases:
-          - db
     command: mongod --smallfiles --logpath=/dev/null # --quiet
   app:
     container_name: app
@@ -32,19 +28,16 @@ services:
     volumes:
       - .:/home/node/app
       - node_modules:/home/node/app/node_modules
-    networks:
-      app-network:
-        aliases:
-          - app
-    command: ./wait-for.sh db:27017 -- /home/node/app/node_modules/.bin/. local/dev-env.sh && node lib/index.js
+#    command: node lib/index.js
     links:
-      - db
+      - "db"
     depends_on:
-      - db
+      - "db"
 
 networks:
-  app-network:
-    driver: bridge
+  default:
+    external:
+      name: my-pre-existing-network
 
 volumes:
   dbdata:

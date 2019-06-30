@@ -8,7 +8,5 @@ RUN npm install
 COPY . /usr/src/app
 USER node
 COPY --chown=node:node . .
-RUN npm run start
-ENV PORT 8080
 EXPOSE 8080
 CMD [ "npm", "run", "start" ]
