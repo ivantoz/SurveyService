@@ -60,16 +60,22 @@ jobs:
   run-test:
       executor: docker-publisher
       steps:
+        - attach_workspace:
+            at: /tmp/workspace
+        - run:
+            name: Load archived Docker image
+            command: docker load -i /tmp/workspace/image.tar
         - run:
             name: Run tests
             command: |
-              docker-compose up -d
               docker-compose run dockerapp npm run test
   run-app:
         executor: docker-publisher
         steps:
+          - attach_workspace:
+              at: /tmp/workspace
           - run:
-              name: Run tests
+              name: Run app
               command: |
                 docker-compose up -d
 workflows:
