@@ -69,17 +69,24 @@ jobs:
         - run:
             name: Run tests
             command: |
-              docker-compose run dockerapp npm run test
+              docker run -itd --name $IMAGE_NAME
+              ls -la
+              npm run test
   run-app:
-        executor: docker-publisher
-        steps:
-          - attach_workspace:
-              at: /tmp/workspace
-          - setup_remote_docker
-          - run:
-              name: Run app
-              command: |
-                docker-compose up -d
+      executor: docker-publisher
+      steps:
+        - attach_workspace:
+            at: /tmp/workspace
+        - setup_remote_docker
+        - run:
+            name: Load archived Docker image
+            command: docker load -i /tmp/workspace/image.tar
+        - run:
+            name: Run app
+            command: |
+              docker run -itd --name $IMAGE_NAME
+              ls -la
+              npm run start
 workflows:
   version: 2
   build-master:
