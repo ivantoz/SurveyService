@@ -69,7 +69,7 @@ jobs:
         - run:
             name: Run tests
             command: |
-              docker run -itd --name $IMAGE_NAME
+              docker run $IMAGE_NAME
               ls -la
               npm run test
   run-app:
@@ -84,7 +84,7 @@ jobs:
         - run:
             name: Run app
             command: |
-              docker run -itd --name $IMAGE_NAME
+              docker run $IMAGE_NAME
               ls -la
               npm run start
 workflows:
