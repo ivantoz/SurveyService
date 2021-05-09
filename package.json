@@ -24,7 +24,7 @@
     "koa-jwt": "^3.5.1",
     "koa-response-handler": "^2.1.0",
     "koa-router": "^7.4.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "map-obj": "^3.0.0",
     "moment": "^2.22.2",
     "mongoose": "^5.3.1",
