@@ -17,7 +17,7 @@
     "co-body": "^6.0.0",
     "config": "^2.0.1",
     "joi-objectid": "^2.0.0",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "koa": "^2.5.3",
     "koa-bunyan-logger": "^2.1.0",
     "koa-joi-router": "^5.1.0",
